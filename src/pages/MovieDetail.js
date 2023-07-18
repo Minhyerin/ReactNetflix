@@ -15,7 +15,7 @@ const MovieDetail = () => {
   const { id } = useParams();
   const movieId = parseInt(id);
 
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
 
   const { popularMovies, topRatedMovies, upComingMovies, genreList, loading } =
     useSelector((state) => state.movie);
@@ -37,9 +37,9 @@ const MovieDetail = () => {
     },
   };
 
-  useEffect(() => {
-    dispatch(movieAction.getMovies());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(movieAction.getMovies());
+  // }, []);
 
   if (loading) {
     return (
