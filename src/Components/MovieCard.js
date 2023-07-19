@@ -9,7 +9,11 @@ const MovieCard = ({ item }) => {
   const { genreList } = useSelector((state) => state.movie);
   return (
     <div
-      onClick={() => navigate(`/movies/${item.id}`)}
+      onClick={() =>
+        navigate(`/movies/${item.id}`, {
+          state: { value: { item }, genreContente: { genreList } },
+        })
+      }
       className="card"
       style={{
         cursor: "pointer",

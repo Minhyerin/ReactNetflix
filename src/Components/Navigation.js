@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
 
-const Navigation = () => {
+import { searchAction } from "../redux/actions/searchAction";
+
+const Navigation = ({ authenticate, setAuthenticate }) => {
+  const [keyword, setKeyword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const onSearch = (e) => {
+    if (e.key == "Enter") {
+      navigate("/movies");
+      dispatch(searchAction.search(keyword.toLowerCase()));
+      console.log(keyword);
+    }
+    navigate("/movies");
+    dispatch(searchAction.search(keyword.toLowerCase()));
+    console.log(keyword);
+  };
+
   return (
     <Navbar bg="dark" variant="dark">
       <Container fluid>
@@ -32,13 +51,27 @@ const Navigation = () => {
             </Link>
           </Nav>
           <Form className="d-flex">
+            <Nav className="login">
+              {authenticate ? (
+                <Link onClick={() => setAuthenticate(false)} to={"/"}>
+                  Logout
+                </Link>
+              ) : (
+                <Link to={"/login"}>Login</Link>
+              )}
+            </Nav>
             <Form.Control
-              type="search"
+              onKeyPress={onSearch}
+              onChange={(e) => setKeyword(e.target.value)}
+              value={keyword}
+              type="text"
               placeholder="Search"
               className="me-2"
               aria-label="Search"
             />
-            <Button variant="outline-danger">Search</Button>
+            <Button onClick={() => onSearch()} variant="outline-danger">
+              Search
+            </Button>
           </Form>
         </Navbar.Collapse>
       </Container>
