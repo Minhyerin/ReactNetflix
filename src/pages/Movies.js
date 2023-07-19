@@ -38,7 +38,7 @@ const Movies = () => {
     return (
       <div className="Movies">
         <div>
-          <h1>All Movies</h1>
+          <h1>Search Movies</h1>
         </div>
 
         <div className="movies-wrapper">

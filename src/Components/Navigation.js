@@ -17,11 +17,6 @@ const Navigation = ({ authenticate, setAuthenticate }) => {
   const navigate = useNavigate();
 
   const onSearch = (e) => {
-    if (e.key == "Enter") {
-      navigate("/movies");
-      dispatch(searchAction.search(keyword.toLowerCase()));
-      console.log(keyword);
-    }
     navigate("/movies");
     dispatch(searchAction.search(keyword.toLowerCase()));
     console.log(keyword);
@@ -61,7 +56,6 @@ const Navigation = ({ authenticate, setAuthenticate }) => {
               )}
             </Nav>
             <Form.Control
-              onKeyPress={onSearch}
               onChange={(e) => setKeyword(e.target.value)}
               value={keyword}
               type="text"
