@@ -107,7 +107,6 @@ const MovieDetail = () => {
             </div>
           </div>
         </div>
-        <YouTube videoId="JqcncLPi9zw" opts={opts} />
         <div className="slide">
           <h1 className="titleText">Another Movie</h1>
           <MovieSlide movies={popularMovies} />
